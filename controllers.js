@@ -27,13 +27,26 @@ const login = TryCatch(async (req, resp, next) => {
 
 
 const fetch_all_gadgets = TryCatch(async(req, resp, next)=>{
-  const gadgets = await Gadget.findAll();
+  const { status } = req.query; 
+  console.log(status);
+  console.log("cdc");
+  let gadgets;
+
+  if (status) {
+    gadgets = await Gadget.findAll({
+      where: { status } 
+    });
+  } else {
+    gadgets = await Gadget.findAll();
+  }
   const response = gadgets.map((gadget) => ({
     ...gadget.toJSON(),
     missionSuccessProbability: `${Math.floor(Math.random() * 100)}%`,
   }));
   resp.json(response);
 })
+
+
 
 
 const add_new_gadget = TryCatch(async(req, resp, next)=>{

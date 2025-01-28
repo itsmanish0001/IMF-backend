@@ -1,6 +1,6 @@
 import express from "express";
 import {Gadget} from "../models/Gadget.js"
-import { add_new_gadget, delete_gadget, fetch_all_gadgets, update_gadget, self_destruct } from "../controllers.js";
+import { add_new_gadget,  delete_gadget, fetch_all_gadgets, update_gadget, self_destruct } from "../controllers.js";
 import { isAdmin } from "../middlewares.js";
 
 const router = express.Router();
